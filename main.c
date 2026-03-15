@@ -18,13 +18,16 @@ bool fileExists(const char *filename);
 
 int main(int argc, char **argv) {
 
+  // Chunks un sizes failu nosaukumi
   char *chunks = NULL;
   char *sizes = NULL;
+
   if (argc != 5) {
     printf("Lietojums: ./md_frag -c chunks -s sizes\n");
     exit(EXIT_FAILURE);
   }
 
+  // Ievada argumentu apstrāde
   for (size_t i = 0; i < argc; ++i) {
     if (strcmp(argv[i], "-c") == 0) {
       if (!fileExists(argv[i + 1])) {
