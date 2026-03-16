@@ -27,7 +27,7 @@ void print_free_list(linkedlist_t *free_list) {
     printf("HEAD -> ");
   }
   while (current != NULL) {
-    printf("%zu ->", current->size);
+    printf("%zu -> ", current->size);
     current = current->next;
   }
   printf("NULL");
