@@ -30,7 +30,7 @@ void print_free_list(linkedlist_t *free_list) {
     printf("%zu -> ", current->size);
     current = current->next;
   }
-  printf("NULL");
+  printf("NULL\n");
 }
 
 /*
