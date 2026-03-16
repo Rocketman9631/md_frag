@@ -8,11 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Programmas argumentu karodziņi
-static unsigned flags = 0;
-#define FLAG_C (1u << 1)
-#define FLAG_S (1u << 2)
-
 // Pārbauda vai fails ar nosaukum filename eksistē.
 bool fileExists(const char *filename);
 
@@ -34,7 +29,6 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Fails %s neeksistē\n", argv[i + 1]);
         exit(EXIT_FAILURE);
       } else {
-        flags |= FLAG_C;
         chunks = argv[i + 1];
         i++;
       }
@@ -43,7 +37,6 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Fails %s neeksistē\n", argv[i + 1]);
         exit(EXIT_FAILURE);
       } else {
-        flags |= FLAG_S;
         sizes = argv[i + 1];
         i++;
       }
