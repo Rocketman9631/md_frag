@@ -28,4 +28,6 @@ linkedlist_t *linkedlist_init();
  */
 linkedlist_t *create_free_list(char *chunk_file);
 linkedlist_t *create_sizes_list(char *chunk_file);
+
+void print_free_list(linkedlist_t *free_list);
 #endif

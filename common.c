@@ -88,9 +88,6 @@ linkedlist_t *create_free_list(char *chunk_file) {
 
     free_list->length++;
   }
-  printf("======= CHUNK SARAKSTS =======\n");
-  print_free_list(free_list);
-  printf("=============================\n");
 
   free(line);
   fclose(chunks);
@@ -142,9 +139,6 @@ linkedlist_t *create_sizes_list(char *size_file) {
 
     size_list->length++;
   }
-  printf("======= SIZE SARAKSTS =======\n");
-  print_free_list(size_list);
-  printf("=============================\n");
   free(line);
   fclose(sizes);
   return size_list;
