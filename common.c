@@ -50,7 +50,7 @@ linkedlist_t *create_free_list(char *chunk_file) {
   size_t len = 0;
   ssize_t read;
 
-  // Lasta failu chunks par rindiņai un pievieno tā
+  // Lasa failu chunks par rindiņai un pievieno tā
   while ((read = getline(&line, &len, chunks)) != -1) {
     char *end;
     size_t value = strtol(line, &end, 10);
