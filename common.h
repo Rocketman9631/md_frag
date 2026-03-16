@@ -22,4 +22,5 @@ linkedlist_t *linkedlist_init();
  * md_frag funkcijas
  */
 linkedlist_t *create_free_list(char *chunk_file);
+linkedlist_t *create_sizes_list(char *chunk_file);
 #endif

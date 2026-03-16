@@ -82,10 +82,64 @@ linkedlist_t *create_free_list(char *chunk_file) {
 
     free_list->length++;
   }
-
+  printf("======= CHUNK SARAKSTS =======\n");
   print_free_list(free_list);
+  printf("=============================\n");
 
   free(line);
   fclose(chunks);
   return free_list;
+}
+
+linkedlist_t *create_sizes_list(char *size_file) {
+  linkedlist_t *size_list = linkedlist_init();
+
+  FILE *sizes = fopen(size_file, "r");
+  if (!sizes) {
+    fprintf(stderr, "Nevar atvērt sizes failu %s\n", size_file);
+    exit(EXIT_FAILURE);
+  }
+
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
+
+  // Lasa failu chunks par rindiņai un pievieno tā vērtības
+  while ((read = getline(&line, &len, sizes)) != -1) {
+    char *end;
+    size_t value = strtol(line, &end, 10);
+
+    if (end == line) {
+      fprintf(stderr, "Nepareizs skaitlis: %s", line);
+      continue;
+    }
+
+    // Pievieno rindas vērtību sarakstam
+    bin_t *bin = NULL;
+    bin = malloc(sizeof(bin_t));
+
+    if (!bin) {
+      fprintf(stderr, "Malloc kļūme!");
+    }
+    bin->size = value;
+    bin->next = NULL;
+
+    if (size_list->head == NULL) {
+      size_list->head = bin;
+    } else {
+      bin_t *current = size_list->head;
+      while (current->next != NULL) {
+        current = current->next;
+      }
+      current->next = bin;
+    }
+
+    size_list->length++;
+  }
+  printf("======= SIZE SARAKSTS =======\n");
+  print_free_list(size_list);
+  printf("=============================\n");
+  free(line);
+  fclose(sizes);
+  return size_list;
 }
