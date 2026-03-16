@@ -9,10 +9,10 @@ void first_fit_test(char *chunk_file, char *size_file) {
   linkedlist_t *size_list = create_sizes_list(size_file);
   // Apstrādā size_file katru rindu izsaucot first_fit
   //
-  bin_t *curr = free_list->head;
-  while (curr != NULL) {
-    //
-  }
+  // bin_t *curr = free_list->head;
+  // while (curr != NULL) {
+  //
+  //}
 }
 
 void *first_fit(size_t size) {
