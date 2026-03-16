@@ -3,6 +3,12 @@
 #include <stdlib.h>
 
 /*
+ * Globālie mainīgie
+ */
+
+linkedlist_t *CHUNKS = NULL;
+linkedlist_t *SIZES = NULL;
+/*
  * Saistītais saraksts
  */
 linkedlist_t *linkedlist_init() {
