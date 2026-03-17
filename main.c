@@ -44,12 +44,18 @@ int main(int argc, char **argv) {
   }
   // Best fit test
   best_fit_test(chunks, sizes);
+  printf("\n\n");
   // First fit test
   first_fit_test(chunks, sizes);
+
+  printf("\n\n");
   // Next fit test
   next_fit_test(chunks, sizes);
+
+  printf("\n\n");
   // Worst fit test
   worst_fit_test(chunks, sizes);
+  printf("\n\n");
 
   exit(EXIT_SUCCESS);
 }
