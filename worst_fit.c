@@ -1,6 +1,7 @@
 #include "worst_fit.h"
 #include "common.h"
 #include <stdio.h>
+#include <time.h>
 
 void *worst_fit(size_t size) {
   bin_t *curr = CHUNKS->head;
@@ -30,6 +31,8 @@ void worst_fit_test(char *chunk_file, char *size_file) {
   CHUNKS = create_free_list(chunk_file);
   SIZES = create_sizes_list(size_file);
 
+  clock_t start = clock();
+  
   // Apstrādā size_file katru rindu izsaucot worst_fit
   bin_t *size_curr = SIZES->head;
   while (size_curr != NULL) {
@@ -43,4 +46,10 @@ void worst_fit_test(char *chunk_file, char *size_file) {
 
     size_curr = size_curr->next;
   }
+
+  clock_t end = clock();
+
+  double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+  printf("Izpildes laiks: %.8f sekundes\n", time_spent);
+
 }

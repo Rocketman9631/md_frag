@@ -1,27 +1,27 @@
 #include "best_fit.h"
 #include "common.h"
 #include <stdio.h>
+#include <time.h>
 
 void *best_fit(size_t size) {
-  void *ptr = NULL;
-  bin_t *chunk_curr = CHUNKS->head;
-  bin_t *best_chunk = NULL;
+  bin_t *curr = CHUNKS->head;
+  bin_t *best = NULL;
 
-  while (chunk_curr != NULL) {
-    if (chunk_curr->size >= size) {
-      if (best_chunk == NULL || chunk_curr->size < best_chunk->size) {
-        best_chunk = chunk_curr;
+  while (curr != NULL) {
+    if (curr->size >= size) {
+      if (best == NULL || curr->size < best->size) {
+        best = curr;
       }
     }
-    chunk_curr = chunk_curr->next;
+    curr = curr->next;
   }
 
-  if (best_chunk != NULL) {
-    ptr = best_chunk;
-    best_chunk->size = best_chunk->size - size;
+  if (best == NULL) {
+    return NULL;
   }
 
-  return ptr;
+  best->size -= size;
+  return best;
 }
 
 void best_fit_test(char *chunk_file, char *size_file) {
@@ -31,12 +31,7 @@ void best_fit_test(char *chunk_file, char *size_file) {
   CHUNKS = create_free_list(chunk_file);
   SIZES = create_sizes_list(size_file);
 
-  printf("======= SIZES SARAKSTS =======\n");
-  print_free_list(SIZES);
-  printf("==============================\n");
-  printf("======= CHUNK SARAKSTS =======\n");
-  print_free_list(CHUNKS);
-  printf("==============================\n");
+  clock_t start = clock();
 
   // Apstrādā size_file katru rindu izsaucot best_fit
   bin_t *size_curr = SIZES->head;
@@ -48,10 +43,12 @@ void best_fit_test(char *chunk_file, char *size_file) {
     } else {
       printf("Veiksmīgi\n");
     }
+
     size_curr = size_curr->next;
   }
 
-  printf("======= CHUNK SARAKSTS =======\n");
-  print_free_list(CHUNKS);
-  printf("==============================\n");
+  clock_t end = clock();
+
+  double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+  printf("Izpildes laiks: %.8f sekundes\n", time_spent);
 }
