@@ -1,6 +1,7 @@
 #include "first_fit.h"
 #include "common.h"
 #include <stdio.h>
+#include <time.h>
 
 void *first_fit(size_t size) {
   void *ptr = NULL;
@@ -34,6 +35,9 @@ void first_fit_test(char *chunk_file, char *size_file) {
   printf("==============================\n");
 
   // Apstrādā size_file katru rindu izsaucot first_fit
+
+  clock_t start = clock();
+
   bin_t *size_curr = SIZES->head;
   while (size_curr != NULL) {
     printf("Rezervē %zu baitus lielu atmiņu... ", size_curr->size);
@@ -45,6 +49,10 @@ void first_fit_test(char *chunk_file, char *size_file) {
     printf("Veiksmīgi\n");
     size_curr = size_curr->next;
   }
+  clock_t end = clock();
+
+  double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+  printf("Izpildes laiks: %.8f sekundes\n", time_spent);
 
   printf("======= CHUNK SARAKSTS =======\n");
   print_free_list(CHUNKS);
