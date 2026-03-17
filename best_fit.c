@@ -45,11 +45,9 @@ void best_fit_test(char *chunk_file, char *size_file) {
 
     if (best_fit(size_curr->size) == NULL) {
       printf("Neveiksmīgi\n");
-      size_curr = size_curr->next;
-      continue;
+    } else {
+      printf("Veiksmīgi\n");
     }
-
-    printf("Veiksmīgi\n");
     size_curr = size_curr->next;
   }
 
