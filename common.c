@@ -39,6 +39,30 @@ void print_free_list(linkedlist_t *free_list) {
   printf("NULL\n");
 }
 
+void print_frag(linkedlist_t *free_list) {
+  /*
+   * External Memory Fragmentation = 1 - (Largest Block Of Free Memory / Total
+   * Free Memory)
+   * https://en.wikipedia.org/wiki/Fragmentation_(computing)#Comparison
+   */
+
+  double external_frag = 0;
+  size_t free_memory_largest = 0;
+  size_t free_memory_total = 0;
+
+  bin_t *curr = free_list->head;
+  while (curr != NULL) {
+    if (curr->size > free_memory_largest) {
+      free_memory_largest = curr->size;
+    }
+    free_memory_total += curr->size;
+    curr = curr->next;
+  }
+
+  external_frag = 1 - ((double)free_memory_largest / (double)free_memory_total);
+  printf("Fragmentācija: %f %% \n", external_frag * 100);
+}
+
 /*
  * md_frag funkcijas
  */
