@@ -3,7 +3,7 @@
 #include <stdio.h>
 /*
  * Saistītais saraksts
- * https://gist.github.com/System-Glitch/59c9f0b5b3b31fdc4ea2108160f40276
+ *
  */
 typedef struct bin {
   size_t size;
