@@ -4,46 +4,56 @@
 #include <time.h>
 
 void *best_fit(size_t size) {
-  bin_t *curr = CHUNKS->head;
-  bin_t *best = NULL;
+  void *ptr = NULL;
+  bin_t *chunk_curr = CHUNKS->head;
+  bin_t *best_chunk = NULL;
 
-  while (curr != NULL) {
-    if (curr->size >= size) {
-      if (best == NULL || curr->size < best->size) {
-        best = curr;
+  while (chunk_curr != NULL) {
+    if (chunk_curr->size >= size) {
+      if (best_chunk == NULL || chunk_curr->size < best_chunk->size) {
+        best_chunk = chunk_curr;
       }
     }
-    curr = curr->next;
+    chunk_curr = chunk_curr->next;
   }
 
-  if (best == NULL) {
-    return NULL;
+  if (best_chunk != NULL) {
+    ptr = best_chunk;
+    best_chunk->size = best_chunk->size - size;
+
+    if (best_chunk->size < 0) {
+      best_chunk->size = 0;
+    }
   }
 
-  best->size -= size;
-  return best;
+  return ptr;
 }
 
 void best_fit_test(char *chunk_file, char *size_file) {
   printf("Best Fit Tests\n");
-
   // Izveido brīvo sarakstu no chunk_file un size_file
   CHUNKS = create_free_list(chunk_file);
   SIZES = create_sizes_list(size_file);
+  printf("======= SIZES SARAKSTS =======\n");
+  print_free_list(SIZES);
+  printf("==============================\n");
+  printf("======= CHUNK SARAKSTS =======\n");
+  print_free_list(CHUNKS);
+  printf("==============================\n");
+
+  // Apstrādā size_file katru rindu izsaucot best_fit
 
   clock_t start = clock();
 
-  // Apstrādā size_file katru rindu izsaucot best_fit
   bin_t *size_curr = SIZES->head;
   while (size_curr != NULL) {
     printf("Rezervē %zu baitus lielu atmiņu... ", size_curr->size);
-
     if (best_fit(size_curr->size) == NULL) {
       printf("Neveiksmīgi\n");
-    } else {
-      printf("Veiksmīgi\n");
+      size_curr = size_curr->next;
+      continue;
     }
-
+    printf("Veiksmīgi\n");
     size_curr = size_curr->next;
   }
 
@@ -51,4 +61,11 @@ void best_fit_test(char *chunk_file, char *size_file) {
 
   double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
   printf("Izpildes laiks: %.8f sekundes\n", time_spent);
+
+  printf("======= CHUNK SARAKSTS =======\n");
+  print_free_list(CHUNKS);
+  printf("==============================\n");
+  printf("========== BEST FIT ==========\n");
+  print_frag(CHUNKS);
+  printf("==============================\n");
 }
