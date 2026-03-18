@@ -57,7 +57,7 @@ void first_fit_test(char *chunk_file, char *size_file) {
   printf("======= CHUNK SARAKSTS =======\n");
   print_free_list(CHUNKS);
   printf("==============================\n");
-  printf("========== FIRST FIT =========\n");
+  printf("========== FRAG TEST=========\n");
   print_frag(CHUNKS);
   printf("==============================\n");
 }

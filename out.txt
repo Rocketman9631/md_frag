@@ -1,0 +1,162 @@
+gcc -o md_frag main.c best_fit.c first_fit.c next_fit.c worst_fit.c common.c
+TEST(1): chunks_large_back + sizes_large
+./md_frag -c tests/chunks_large_back -s tests/sizes_large
+Best Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 62.962963 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 62.962963 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 62.962963 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 72.602740 % 
+
+TEST(2): chunks_large_back + sizes_random
+./md_frag -c tests/chunks_large_back -s tests/sizes_random
+Best Fit Tests
+Izpildes laiks: 0.00000300 sekundes
+Fragmentācija: 30.000000 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 10.000000 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 30.000000 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 66.666667 % 
+
+TEST(3): chunks_large_back + sizes_small
+./md_frag -c tests/chunks_large_back -s tests/sizes_small
+Best Fit Tests
+Izpildes laiks: 0.00000400 sekundes
+Fragmentācija: 1.000000 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000300 sekundes
+Fragmentācija: 1.000000 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00001200 sekundes
+Fragmentācija: 50.000000 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000400 sekundes
+Fragmentācija: 65.000000 % 
+
+TEST(4): chunks_large_front + sizes_small
+./md_frag -c tests/chunks_large_front -s tests/sizes_large
+Best Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 72.592593 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 66.956522 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 66.956522 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 66.956522 % 
+
+TEST(5): chunks_large_front + sizes_random
+./md_frag -c tests/chunks_large_front -s tests/sizes_random
+Best Fit Tests
+Izpildes laiks: 0.00000300 sekundes
+Fragmentācija: 66.000000 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 50.000000 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 54.000000 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 76.000000 % 
+
+TEST(6): chunks_large_front + sizes_small
+./md_frag -c tests/chunks_large_front -s tests/sizes_small
+Best Fit Tests
+Izpildes laiks: 0.00000400 sekundes
+Fragmentācija: 33.000000 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 50.000000 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00001200 sekundes
+Fragmentācija: 50.000000 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000400 sekundes
+Fragmentācija: 76.515152 % 
+
+TEST(7): chunks_random + sizes_large
+./md_frag -c tests/chunks_random -s tests/sizes_large
+Best Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 70.370370 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 65.479452 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 65.479452 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 72.602740 % 
+
+TEST(8): chunks_random + sizes_random
+./md_frag -c tests/chunks_random -s tests/sizes_random
+Best Fit Tests
+Izpildes laiks: 0.00000300 sekundes
+Fragmentācija: 40.000000 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 68.666667 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 68.666667 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 77.250000 % 
+
+TEST(9): chunks_random + sizes_large
+./md_frag -c tests/chunks_random -s tests/sizes_large
+Best Fit Tests
+Izpildes laiks: 0.00000300 sekundes
+Fragmentācija: 70.370370 % 
+
+First Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 65.479452 % 
+
+Next Fit Tests
+Izpildes laiks: 0.00000100 sekundes
+Fragmentācija: 65.479452 % 
+
+Worst Fit Tests
+Izpildes laiks: 0.00000200 sekundes
+Fragmentācija: 72.602740 % 
