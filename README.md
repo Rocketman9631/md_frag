@@ -1,4 +1,4 @@
-# MD_FAG
+# MD_FRAG
 
 ```bash
 git clone git@github.com:Rocketman9631/md_frag.git
